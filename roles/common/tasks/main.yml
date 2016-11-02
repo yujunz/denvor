@@ -11,6 +11,30 @@
   with_items:
     - zsh
     - git
-- name: user configuration
+- name: users added
   become: true
-  user: "{{ user }}"
+  user:
+    name: "{{ item.name }}"
+    comment: "{{ item.comment }}"
+    shell: "{{ item.shell }}"
+    append: yes
+    groups: "{{ item.groups }}"
+  with_items: "{{ users }}"
+- name: .ssh directories created
+  become: true
+  file:
+    path: "/home/{{ item.name }}/.ssh"
+    state: directory
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+    mode: 0700
+  with_items: "{{ users }}"
+- name: public keys authorized
+  become: true
+  copy:
+    src: "{{ item.name }}.authorized_keys"
+    dest: "/home/{{ item.name }}/.ssh/authorized_keys"
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+    mode: 0600
+  with_items: "{{ users }}"

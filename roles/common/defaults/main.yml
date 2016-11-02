@@ -1,0 +1,6 @@
+---
+users:
+  - name: yujunz
+    comment: "Yujun Zhang <zhang.yujunz@zte.com.cn>"
+    groups: sudo
+    shell: /bin/zsh
