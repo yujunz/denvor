@@ -1,21 +1,19 @@
 ---
 - hosts: python
-  tasks:
-  - name: apt cache update
-    become: true
-    apt: update_cache=yes cache_valid_time=3600
-  - name: all packages updated to latest version
-    become: true
-    apt: upgrade=dist
-  - name: packages for development installed
-    become: true
-    apt: name={{ item }} state=latest
-    with_items:
-      - zsh
-      - git
-      - python
-  - name: user configuration
-    become: true
-    user: name=yujunz comment="Yujun Zhang" shell=/bin/zsh groups=sudo append=yes
-  - name: ensure pyenv is installed
-    command: "curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash"
+  roles:
+    - role: common
+      user:
+        name: yujunz
+        comment: Yujun Zhang
+        shell: /bin/zsh
+        groups: sudo
+        append: yes
+    - role: pyenv
+      pyenv_runcom: ~/.zshrc
+      pyenv_virtualenv: true
+      pyenv_versions:
+        - 2.7.12
+        - 3.5.2
+      pyenv_default_versions:
+        - 2.7.12
+        - 3.5.2

@@ -4,7 +4,7 @@
 ; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
 ;
 [subrepo]
-	remote = https://github.com/dirn/ansible-pyenv.git
+	remote = git@github.com:yujunz/ansible-pyenv.git
 	branch = master
 	commit = 873e974d11bbfee5a6564b9d397c573fb21ef067
 	parent = 3b96b1b4a69e6f2fe83209c15d704884b9d8cb73

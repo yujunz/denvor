@@ -1,0 +1,16 @@
+---
+- name: apt cache updated
+  become: true
+  apt: update_cache=yes cache_valid_time=3600
+- name: packages upgraded
+  become: true
+  apt: upgrade=dist
+- name: required packages installed
+  become: true
+  apt: name={{ item }} state=latest
+  with_items:
+    - zsh
+    - git
+- name: user configuration
+  become: true
+  user: "{{ user }}"
