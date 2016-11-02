@@ -1,2 +1,4 @@
-[devspaces]
-localhost
+mockstack
+
+[python]
+mockstack

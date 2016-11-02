@@ -1,5 +1,5 @@
 ---
-- hosts: devspaces
+- hosts: python
   tasks:
   - name: apt cache update
     become: true
